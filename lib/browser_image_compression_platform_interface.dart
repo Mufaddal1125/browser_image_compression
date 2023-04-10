@@ -1,5 +1,8 @@
+import 'package:cross_file/cross_file.dart';
+import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'browser_image_compression.dart';
 import 'browser_image_compression_method_channel.dart';
 
 abstract class BrowserImageCompressionPlatform extends PlatformInterface {
@@ -26,5 +29,17 @@ abstract class BrowserImageCompressionPlatform extends PlatformInterface {
 
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<Uint8List> compressImageByXFile(XFile xfile, Options opts) {
+    // to be implemented by the platform-specific implementation
+    throw UnimplementedError(
+        'compressImageByXFile() has not been implemented.');
+  }
+
+  Future<Uint8List> compressImage(
+      String filename, Uint8List data, String mineType, Options opts) {
+    // to be implemented by the platform-specific implementation
+    throw UnimplementedError('compressImageByFile() has not been implemented.');
   }
 }
