@@ -1,4 +1,3 @@
-import 'package:browser_image_compression/browser_image_compression_platform_interface.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +33,8 @@ class _MyAppState extends State<MyApp> {
 
       // there's is compressImageByXFile that you can input the XFile directly but in this example it
       // uses the general method in case you're getting your image file through another way
-      _imageNotifier.value = await BrowserImageCompressionPlatform.instance.compressImage(
+      _imageNotifier.value =
+          await BrowserImageCompression.compressImage(
         basename(xfile.path), // or xfile.name
         await xfile.readAsBytes(),
         lookupMimeType(xfile.name).toString(),
@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
         var f = NumberFormat("####.0#", "en_US");
 
         comparisonSize =
-            'initial size is $initialSize and final size is $finalSize. Compression of ${f.format(initialSize / finalSize)}x';
+            'initial size is ${initialSize / 1024}KB and final size is ${finalSize / 1024}KB. Compression of ${f.format(initialSize / finalSize)}x';
       }
     }
   }

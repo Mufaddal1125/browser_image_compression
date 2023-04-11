@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:browser_image_compression/browser_image_compression_platform_interface.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:flutter/services.dart';
+
 class Options {
   /// @default Number.POSITIVE_INFINITY
   double maxSizeMB = 1;
@@ -48,4 +52,29 @@ class Options {
     this.preserveExif = false,
     this.libURL,
   });
+}
+
+class BrowserImageCompression {
+  static BrowserImageCompressionPlatform get platform =>
+      BrowserImageCompressionPlatform.instance;
+
+  static set platform(BrowserImageCompressionPlatform platform) {
+    BrowserImageCompressionPlatform.instance = platform;
+  }
+
+  static Future<Uint8List?> compressImage(
+    String fileName,
+    Uint8List file,
+    String mimeType,
+    Options options,
+  ) async {
+    return platform.compressImage(fileName, file, mimeType, options);
+  }
+
+  static Future<Uint8List?> compressImageByXFile(
+    XFile xfile,
+    Options options,
+  ) async {
+    return platform.compressImageByXFile(xfile, options);
+  }
 }

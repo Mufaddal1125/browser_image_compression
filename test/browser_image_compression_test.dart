@@ -30,7 +30,7 @@ class MockBrowserImageCompressionPlatform
 
 void main() {
   final BrowserImageCompressionPlatform initialPlatform =
-      BrowserImageCompressionPlatform.instance;
+      BrowserImageCompression.platform;
 
   test('$MethodChannelBrowserImageCompression is the default instance', () {
     expect(
@@ -42,7 +42,7 @@ void main() {
     //     BrowserImageCompression();
     MockBrowserImageCompressionPlatform fakePlatform =
         MockBrowserImageCompressionPlatform();
-    BrowserImageCompressionPlatform.instance = fakePlatform;
+    BrowserImageCompression.platform = fakePlatform;
 
     //expect(await browserImageCompressionPlugin.getPlatformVersion(), '42');
   });
